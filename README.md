@@ -1,0 +1,6 @@
+echo "# hello" > > README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Vika-207/import
+git push -u origin master
