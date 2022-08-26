@@ -1,0 +1,36 @@
+import wikipedia
+# print the summary of what python is
+print(wikipedia.summary("Python Programming Language"))
+In [2]: wikipedia.summary("Python programming languag", sentences=2)
+Out[2]: "Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace."
+In [3]: result = wikipedia.search("Neural networks")
+In [4]: print(result)
+['Neural network', 'Artificial neural network', 'Convolutional neural network', 'Recurrent neural network', 'Rectifier (neural networks)', 'Feedforward neural network', 'Neural circuit', 'Quantum neural network', 'Dropout (neural networks)', 'Types of artificial neural networks']
+# get the page: Neural network
+page = wikipedia.page(result[0])
+# get the title of the page
+title = page.title
+# get the categories of the page
+categories = page.categories
+# get the whole wikipedia page text (content)
+content = page.content
+# get all the links in the page
+links = page.links
+# get the page references
+references = page.references
+# summary
+summary = page.summary
+# print info
+print("Page content:\n", content, "\n")
+print("Page title:", title, "\n")
+print("Categories:", categories, "\n")
+print("Links:", links, "\n")
+print("References:", references, "\n")
+print("Summary:", summary, "\n")
+# changing language
+# for a list of available languages, 
+# check http://meta.wikimedia.org/wiki/List_of_Wikipedias link.
+language = "es"
+wikipedia.set_lang(language)
+# get a page and print the summary in the new language
+print(f"Summary of web scraping in {language}:", wikipedia.page("Web Scraping").summary)
