@@ -1,0 +1,33 @@
+import django
+from django.core.handlers.asgi import ASGIHandler
+
+
+def get_asgi_application():
+    django.setup(set_prefix=False)
+    return ASGIHandler()
+# Serve only HTTP connections.
+# FIXME: Allow to override this.
+if scope['type'] != 'http':
+    raise ValueError(
+        'Django can only handle ASGI/HTTP connections, not %s.'
+        % scope['type']
+How to use Django with Daphne
+Daphne is a pure-Python ASGI server for UNIX, maintained by members of the Django project. It acts as the reference server for ASGI.
+
+Installing Daphne
+You can install Daphne with pip:
+
+python -m pip install daphne
+Running Django in Daphne
+When Daphne is installed, a daphne command is available which starts the Daphne server process. At its simplest, Daphne needs to be called with the location of a module containing an ASGI application object, followed by what the application is called (separated by a colon).
+
+For a typical Django project, invoking Daphne would look like:
+
+daphne myproject.asgi:application
+This will start one process listening on 127.0.0.1:8000. It requires that your project be on the Python path; to ensure that run this command from the same directory as your manage.py file.
+Collecting pycparser (from cffi!=1.11.3,>=1.8->cryptography>=2.7->autobahn>=0.18->daphne)
+Installing collected packages: idna, hyperlink, zope.interface, attrs, six, Automat, constantly, PyHamcrest, incremental, pycparser, cffi, cry
+ptography, pyopenssl, pyasn1, pyasn1-modules, service-identity, twisted, txaio, autobahn, daphne
+Successfully installed Automat-0.8.0 PyHamcrest-1.9.0 attrs-19.3.0 autobahn-19.11.1 cffi-1.13.2 constantly-15.1.0 cryptography-2.8 daphne-2.4.
+0 hyperlink-19.0.0 idna-2.8 incremental-17.5.0 pyasn1-0.4.8 pyasn1-modules-0.2.7 pycparser-2.19 pyopenssl-19.1.0 service-identity-18.1.0 six-1
+.13.0 twisted-19.10.0 txaio-18.8.1 zope.interface-4.7.1
